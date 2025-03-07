@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 NextAuth Credentials Manager
 
-## Getting Started
+A modern authentication system built with Next.js 14, featuring secure credential-based authentication and user management.
 
-First, run the development server:
+## 🌟 Overview
+
+NextAuth Credentials Manager is a robust authentication solution that provides a secure and user-friendly login system. Built with Next.js and TypeScript, it implements best practices for authentication and session management.
+
+## ✨ Features
+
+- 🔒 Secure credential-based authentication
+- 👤 User registration with data validation
+- 🔑 Password management with encryption
+- 🛡️ Protected dashboard routes
+- 🔄 Session management
+- ⚡ Real-time form validation
+- 🎨 Modern UI with Radix UI components
+- 📱 Responsive design
+
+## 🛠️ Tech Stack
+
+- Next.js 15
+- TypeScript
+- NextAuth.js
+- Prisma
+- PostgreSQL
+- Zod Validation
+- Radix UI
+- Tailwind CSS
+- Axios
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- PostgreSQL database
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/iritman/next-auth-credentials.git
+cd next-auth-credentials
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add:
+
+```env
+DATABASE_URL="your_sqlserver_database_url"
+NEXTAUTH_SECRET="your_nextauth_secret"
+NEXTAUTH_URL="http://localhost:3000"
+```
+
+4. Run database migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+5. Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔍 Features in Detail
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Authentication
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Secure login with username/password
+- JWT-based session management
+- Protected routes with middleware
+- Session persistence
 
-## Learn More
+### User Management
 
-To learn more about Next.js, take a look at the following resources:
+- User registration with data validation
+- Password change functionality
+- Secure password hashing
+- User profile information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Form validation with Zod
+- Password encryption with bcrypt
+- Protected API routes
+- Secure session handling
 
-## Deploy on Vercel
+### UI/UX
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clean and modern interface
+- Loading states and feedback
+- Error handling and messages
+- Responsive design for all devices
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 API Routes
+
+- `/api/auth/signup` - User registration
+- `/api/auth/login` - User authentication
+- `/api/auth/change-password` - Password management
+- `/api/auth/[...nextauth]` - NextAuth configuration
+
+## 🔧 Configuration
+
+The project uses several key configurations:
+
+- NextAuth.js for authentication
+- Prisma for database management
+- Zod for schema validation
+- Radix UI for components
+- Tailwind CSS for styling
+
+## 👏 Acknowledgments
+
+- Next.js team for the amazing framework
+- Radix UI for beautiful components
+- NextAuth.js for authentication solutions
+- Prisma team for the database toolkit
+
+## 🌟 Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request. 🚀
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 📧 Contact
+
+For any questions or feedback, feel free to reach out:
+
+- 📩 Email: [iritman@gmail.com](mailto:iritman@gmail.com)
+- 🔗 LinkedIn: [Naiem Yousefifard](https://www.linkedin.com/in/naiem-yousefifard-11086729b)
+
+Happy coding! 🎉
