@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/client";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { loginSchema } from "@/app/lib/validationSchema";
 
 // Get JWT secret from environment variables and validate its presence
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -11,17 +12,18 @@ if (!JWT_SECRET) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Extract username and password from request body
+    // Extract and validate request body
     const body = await request.json();
-    const { username, password } = body;
+    const validatedData = loginSchema.safeParse(body);
 
-    // Validate required fields
-    if (!username || !password) {
+    if (!validatedData.success) {
       return NextResponse.json(
-        { error: "Username and password are required" },
+        { error: validatedData.error.issues[0].message },
         { status: 400 }
       );
     }
+
+    const { username, password } = validatedData.data;
 
     // Find user in database by username
     const user = await prisma.user.findFirst({
@@ -69,7 +71,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     // Log error and return generic error response
     console.error("Login error:", error);
-
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
