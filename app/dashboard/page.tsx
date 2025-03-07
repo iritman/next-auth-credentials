@@ -1,17 +1,27 @@
 'use client'
 
-import { Box, Button, Flex, Text, Card, Heading } from '@radix-ui/themes'
+import { Box, Button, Card, Flex, Heading, Text, Progress } from '@radix-ui/themes'
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import React from 'react'
 
 const DashboardPage = () => {
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
     const router = useRouter()
 
     const handleSignOut = async () => {
         await signOut({ redirect: false })
         router.push('/')
+    }
+
+    if (status === 'loading') {
+        return (
+            <Box className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <Flex direction="column" gap="4" align="center">
+                    <Progress size="3" />
+                    <Text size="2">Loading dashboard...</Text>
+                </Flex>
+            </Box>
+        )
     }
 
     return (
@@ -20,9 +30,14 @@ const DashboardPage = () => {
                 {/* Header */}
                 <Flex justify="between" align="center">
                     <Heading size="8">Dashboard</Heading>
-                    <Button color="red" onClick={handleSignOut}>
-                        Sign Out
-                    </Button>
+                    <Flex gap="4">
+                        <Button onClick={() => router.push('/dashboard/change-password')}>
+                            Change Password
+                        </Button>
+                        <Button color="red" onClick={handleSignOut}>
+                            Sign Out
+                        </Button>
+                    </Flex>
                 </Flex>
 
                 {/* User Info Card */}
